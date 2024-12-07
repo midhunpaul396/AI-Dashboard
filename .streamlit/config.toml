@@ -1,0 +1,15 @@
+[theme]
+# Primary accent color for interactive elements, use a light blue.
+primaryColor = "#1976D2"  # Material UI primary blue
+
+# Background color for the main content area, use a light background color.
+backgroundColor = "#FFFFFF"  # White background for light theme
+
+# Background color used for the sidebar and most interactive widgets, use a light blue shade.
+secondaryBackgroundColor = "#F5F5F5"  # Light gray background for sidebar
+
+# Color used for almost all text, using a dark gray for contrast.
+textColor = "#212121"  # Dark gray text for readability
+
+# Font family for all text in the app, keeping the default sans serif for a clean look.
+font = "sans serif"
