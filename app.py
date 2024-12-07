@@ -147,22 +147,25 @@ data_summary = (
 # Button to trigger insights generation
 if st.button("Generate Insights"):
     with st.spinner("Generating insights..."):
-        try:
-            # Get OpenAI insights
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are an expert data analyst."},
-                    {"role": "user", "content": data_summary},
-                ],
-                max_tokens=500,
-                temperature=0.7,
-            )
+        if openai.api_key is None:  # Check if the OpenAI API key is missing
+            st.error("Sorry I am out of OPENAI API fuel")
+        else:
+            try:
+                # Get OpenAI insights
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "You are an expert data analyst."},
+                        {"role": "user", "content": data_summary},
+                    ],
+                    max_tokens=500,
+                    temperature=0.7,
+                )
 
-            # Extract and display AI-generated insights
-            ai_insights = response["choices"][0]["message"]["content"].strip()
-            st.subheader("AI-Generated Insights")
-            st.write(ai_insights)
+                # Extract and display AI-generated insights
+                ai_insights = response["choices"][0]["message"]["content"].strip()
+                st.subheader("AI-Generated Insights")
+                st.write(ai_insights)
 
-        except Exception as e:
-            st.error(f"Error generating insights: {e}")
+            except Exception as e:
+                st.error(f"Error generating insights: {e}")
